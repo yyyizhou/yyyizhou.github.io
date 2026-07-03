@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yi Zhou — Economics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fdfdfc;
+    --ink:#161513;
+    --ink-soft:#48453f;
+    --rule:#161513;
+    --rule-faint:#c9c5bb;
+    --accent:#7a2318;
+    --measure:660px;
+    --display: 'Spectral', serif;
+    --body: 'Source Serif 4', serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-font-smoothing:antialiased;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.65;
+  }
+
+  a{color:var(--ink); text-decoration-color: var(--rule-faint); text-underline-offset:3px;}
+  a:hover{color:var(--accent); text-decoration-color:var(--accent);}
+
+  .sheet{
+    max-width:var(--measure);
+    margin:0 auto;
+    padding: 64px 24px 120px;
+  }
+
+  /* running head, like a journal citation line */
+  .running-head{
+    display:flex;
+    justify-content:space-between;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--rule);
+    padding-bottom:10px;
+    margin-bottom:56px;
+  }
+
+  header.masthead{
+    margin-bottom:52px;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  h1.name{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(38px, 6vw, 54px);
+    line-height:1.05;
+    margin:0 0 10px;
+    letter-spacing:-0.01em;
+  }
+  .affil{
+    font-family:var(--display);
+    font-style:italic;
+    font-weight:400;
+    font-size:18px;
+    color:var(--ink-soft);
+    margin:0 0 22px;
+  }
+  .quick-links{
+    font-family:var(--mono);
+    font-size:13px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:4px 0;
+    color:var(--ink-soft);
+  }
+  .quick-links a{margin:0 10px 0 0;}
+  .quick-links span.sep{margin:0 10px 0 0; color:var(--rule-faint);}
+
+  /* abstract-style intro box */
+  .abstract{
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    padding:22px 0;
+    margin-bottom:60px;
+  }
+  .abstract .label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:10px;
+  }
+  .abstract p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:15.5px;
+  }
+
+  section{margin-bottom:56px;}
+  section .sec-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    border-bottom:1px solid var(--rule-faint);
+    padding-bottom:8px;
+    margin-bottom:22px;
+  }
+  section .sec-num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--accent);
+  }
+  section h2{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:22px;
+    margin:0;
+    letter-spacing:-0.005em;
+  }
+
+  .about p{margin:0 0 14px;}
+  .about p:last-child{margin-bottom:0;}
+
+  ul.plain{list-style:none; margin:0; padding:0;}
+
+  .research-list li{
+    display:flex;
+    gap:16px;
+    padding:12px 0;
+    border-bottom:1px dotted var(--rule-faint);
+  }
+  .research-list li:last-child{border-bottom:none;}
+  .research-tag{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    width:120px;
+    flex-shrink:0;
+    padding-top:3px;
+  }
+  .research-body p{margin:0; font-size:15.5px;}
+
+  .pub-item{
+    padding:16px 0;
+    border-bottom:1px dotted var(--rule-faint);
+  }
+  .pub-item:last-child{border-bottom:none;}
+  .pub-status{
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--accent);
+    display:block;
+    margin-bottom:6px;
+  }
+  .pub-title{
+    font-family:var(--display);
+    font-size:17px;
+    font-weight:500;
+    margin:0 0 4px;
+  }
+  .pub-meta{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    margin:0;
+  }
+
+  .cv-row{
+    display:flex;
+    gap:20px;
+    padding:9px 0;
+    font-size:15px;
+  }
+  .cv-row .yr{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--ink-soft);
+    width:96px;
+    flex-shrink:0;
+    padding-top:1px;
+  }
+  .cv-download{
+    display:inline-block;
+    margin-top:16px;
+    font-family:var(--mono);
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    border:1px solid var(--ink);
+    padding:9px 16px;
+  }
+  .cv-download:hover{
+    background:var(--ink);
+    color:var(--paper);
+  }
+
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px 40px;
+  }
+  .contact-grid dt{
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--ink-soft);
+    margin:0 0 4px;
+  }
+  .contact-grid dd{margin:0; font-size:15.5px;}
+
+  footer{
+    margin-top:80px;
+    padding-top:16px;
+    border-top:1px solid var(--rule);
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+  }
+
+  @media (max-width:520px){
+    .sheet{padding:40px 18px 90px;}
+    .contact-grid{grid-template-columns:1fr;}
+    .research-list li{flex-direction:column; gap:4px;}
+    .research-tag{width:auto;}
+    .running-head{flex-direction:column; gap:4px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="running-head">
+    <span>Zhou, Y. — Curriculum Vitæ &amp; Research</span>
+    <span>Updated July 2026</span>
+  </div>
+
+  <header class="masthead">
+    <p class="eyebrow">Economics</p>
+    <h1 class="name">Yi Zhou</h1>
+    <p class="affil">MSc Economics Candidate, London School of Economics and Political Science</p>
+    <p class="quick-links">
+      <a href="#research">Research</a><span class="sep">·</span>
+      <a href="#publications">Publications</a><span class="sep">·</span>
+      <a href="#cv">CV</a><span class="sep">·</span>
+      <a href="#contact">Contact</a><span class="sep">·</span>
+      <a href="mailto:y.zhou133@lse.ac.uk">y.zhou133@lse.ac.uk</a>
+    </p>
+  </header>
+
+  <div class="abstract">
+    <span class="label">About</span>
+    <p>I am an MSc Economics candidate at LSE, working toward a PhD in economics/accounting with faculty positions in mainland China, Hong Kong, or Singapore in mind. My current research combines industrial organization and applied microeconometrics, with a working paper on EU countervailing duties and Chinese battery-electric-vehicle manufacturers. I also work as a research assistant on a large-scale text-extraction pipeline for SEC EDGAR filings.</p>
+  </div>
+
+  <section id="about" class="about">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>About</h2>
+    </div>
+    <p>[Placeholder — replace with your own biography.] I am currently completing my MSc in Economics at the London School of Economics. My interests sit at the intersection of industrial organization, trade policy, and applied econometrics, with a growing focus on firm-level responses to regulatory and trade-policy shocks.</p>
+    <p>Alongside coursework, I work as a research assistant developing a text-extraction pipeline that processes N-CSR MD&amp;A filings from SEC EDGAR, and I am preparing applications for doctoral programmes in economics and accounting.</p>
+  </section>
+
+  <section id="research">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>Research</h2>
+    </div>
+    <ul class="plain research-list">
+      <li>
+        <span class="research-tag">Industrial Org.</span>
+        <div class="research-body"><p>Firm-level responses to trade-policy interventions, with a focus on tariffs and countervailing duties in manufacturing industries.</p></div>
+      </li>
+      <li>
+        <span class="research-tag">Trade Policy</span>
+        <div class="research-body"><p>Effects of EU countervailing duties on Chinese battery-electric-vehicle exporters, using a difference-in-differences framework at the aggregate and firm level.</p></div>
+      </li>
+      <li>
+        <span class="research-tag">Applied Econometrics</span>
+        <div class="research-body"><p>Methods for causal identification in staggered treatment settings, and text-as-data methods applied to regulatory filings.</p></div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="publications">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>Publications &amp; Working Papers</h2>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-status">Working Paper</span>
+      <p class="pub-title">The Impact of EU Countervailing Duties on Chinese BEV Manufacturers: A Difference-in-Differences Approach</p>
+      <p class="pub-meta">[Placeholder] Extended essay, London School of Economics. Analyzes aggregate trade flows (Eurostat Comext) and firm-level productivity and allocative efficiency among listed Chinese BEV manufacturers.</p>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-status">Referee Report</span>
+      <p class="pub-title">Comment on Bhattacharya, Illanes &amp; Stillerman — Merger Effects and Antitrust Enforcement</p>
+      <p class="pub-meta">[Placeholder] Coursework referee report, EC427 Industrial Organization.</p>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-status">In Progress</span>
+      <p class="pub-title">[Add your next paper title here]</p>
+      <p class="pub-meta">[Placeholder — short description of the project and its status.]</p>
+    </div>
+  </section>
+
+  <section id="cv">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>CV</h2>
+    </div>
+    <div class="cv-row"><span class="yr">2025–2026</span><span>MSc Economics, London School of Economics and Political Science</span></div>
+    <div class="cv-row"><span class="yr">[Year]</span><span>[Placeholder — prior degree, institution]</span></div>
+    <div class="cv-row"><span class="yr">2025–</span><span>Research Assistant — N-CSR MD&amp;A text-extraction pipeline, SEC EDGAR filings</span></div>
+    <a class="cv-download" href="#">Download full CV (PDF)</a>
+  </section>
+
+  <section id="contact">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2>Contact</h2>
+    </div>
+    <dl class="contact-grid">
+      <div>
+        <dt>Email</dt>
+        <dd><a href="mailto:y.zhou133@lse.ac.uk">y.zhou133@lse.ac.uk</a></dd>
+      </div>
+      <div>
+        <dt>Institution</dt>
+        <dd>London School of Economics and Political Science</dd>
+      </div>
+      <div>
+        <dt>Google Scholar</dt>
+        <dd><a href="#">[Add link]</a></dd>
+      </div>
+      <div>
+        <dt>LinkedIn</dt>
+        <dd><a href="#">[Add link]</a></dd>
+      </div>
+    </dl>
+  </section>
+
+  <footer>
+    <span>Yi Zhou</span>
+    <span>London, UK</span>
+  </footer>
+
+</div>
+</body>
+</html>
