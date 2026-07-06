@@ -57,15 +57,18 @@
 
   header.masthead{
     margin-bottom:52px;
+    display:flex;
+    align-items:center;
+    gap:24px;
   }
   .portrait{
-    width:104px;
-    height:104px;
+    width:140px;
+    height:140px;
     object-fit:cover;
     flex-shrink:0;
     border:1px solid var(--rule);
-    filter:grayscale(100%) contrast(1.05);
   }
+  .masthead-text{flex:1; min-width:0;}
   .eyebrow{
     font-family:var(--mono);
     font-size:12px;
@@ -273,13 +276,15 @@
 
   <header class="masthead">
     <img class="portrait" src="photo.jpg">
-    <h1 class="name">Yi Zhou</h1>
-    <p class="quick-links">
-      <a href="#research">Research</a><span class="sep">·</span>
-      <a href="#cv">CV</a><span class="sep">·</span>
-      <a href="#contact">Contact</a><span class="sep">·</span>
-      <a href="mailto:y.zhou133@lse.ac.uk">y.zhou133@lse.ac.uk</a>
-    </p>
+    <div class="masthead-text">
+      <h1 class="name">Yi Zhou</h1>
+      <p class="quick-links">
+        <a href="#research">Research</a><span class="sep">·</span>
+        <a href="#cv">CV</a><span class="sep">·</span>
+        <a href="#contact">Contact</a><span class="sep">·</span>
+        <a href="mailto:y.zhou133@lse.ac.uk">y.zhou133@lse.ac.uk</a>
+      </p>
+    </div>
   </header>
 
   <section id="about" class="about">
